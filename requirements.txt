@@ -17,3 +17,5 @@ crewai-tools
 rouge-score
 nltk
 pydantic
+crewai[google-genai]
+pytest
