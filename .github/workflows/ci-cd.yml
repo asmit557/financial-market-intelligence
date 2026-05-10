@@ -159,6 +159,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: 'Deployment Failed - Rollback Required',
-              body: Deployment validation failed for commit ${context.sha}.\n\nPlease investigate and rollback if necessary.,
-              labels: ['deployment-failure', 'rollback']
+              body: 'Deployment validation failed. Please investigate and rollback if necessary.',
+              labels: ['deployment-failure']
             })
