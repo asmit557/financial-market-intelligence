@@ -81,11 +81,7 @@ jobs:
       - name: Pull and run Docker image
         run: |
           docker pull ${{ secrets.DOCKER_USERNAME }}/financial-intelligence-rag:latest
-          docker run -d --name test-container \
-            -p 8000:8000 \
-            -p 8501:8501 \
-            -e GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }} \
-            -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
+          docker run -d --name test-container -p 8000:8000 -p 8501:8501 -e GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }} -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} ${{ secrets.DOCKER_USERNAME }}/financial-intelligence-rag:latest
 
       - name: Wait for container to start
         run: |
