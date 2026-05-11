@@ -2,7 +2,7 @@ import os
 import time
 from dotenv import load_dotenv
 from langchain_community.vectorstores import FAISS
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain_core.prompts import PromptTemplate
@@ -29,11 +29,10 @@ def load_vectorstore(embeddings):
         allow_dangerous_deserialization=True
     )
 
-
 def load_llm():
-    """Initialize the Gemini 2.5 Flash LLM."""
-    return ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash",
+    """Initialize the OpenAI GPT-4o-mini LLM."""
+    return ChatOpenAI(
+        model="gpt-4o-mini",
         temperature=0.7,
         max_tokens=2048
     )

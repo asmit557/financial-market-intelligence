@@ -2,9 +2,6 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-os.environ["CREWAI_LLM"] = "gemini/gemini-2.0-flash"
-os.environ["GEMINI_API_KEY"] = os.getenv("GOOGLE_API_KEY", "")
-os.environ["OPENAI_API_KEY"] = "fake-key-not-used"
 
 from crewai import Agent, Task, Crew, Process
 from crewai.tools import tool
@@ -145,9 +142,9 @@ def create_retriever_agent():
                   "company filings. You always validate the relevance of "
                   "retrieved data before passing it on.",
         tools=[rag_search_tool, retrieval_validator_tool],
-        llm="gemini/gemini-2.0-flash",
+        llm="gpt-4o-mini",
         verbose=True,
-        memory=False,
+        memory=True,
         allow_delegation=False,
     )
 
@@ -169,9 +166,9 @@ def create_analysis_agent():
                   "evidence. You structure your analysis with key metrics, "
                   "comparisons, and clear conclusions.",
         tools=[rag_search_tool],
-        llm="gemini/gemini-2.0-flash",
+        llm="gpt-4o-mini",
         verbose=True,
-        memory=False,
+        memory=True,
         allow_delegation=False,
     )
 
@@ -193,9 +190,9 @@ def create_portfolio_agent():
                   "for three risk profiles: conservative, moderate, and "
                   "aggressive, with clear reasoning for each.",
         tools=[rag_search_tool],
-        llm="gemini/gemini-2.0-flash",
+        llm="gpt-4o-mini",
         verbose=True,
-        memory=False,
+        memory=True,
         allow_delegation=False,
     )
 
@@ -217,9 +214,9 @@ def create_risk_agent():
                   "risk. You always provide a risk rating (Low/Medium/High) "
                   "with supporting evidence.",
         tools=[rag_search_tool, quality_feedback_tool],
-        llm="gemini/gemini-2.0-flash",
+        llm="gpt-4o-mini",
         verbose=True,
-        memory=False,
+        memory=True,
         allow_delegation=False,
     )
 

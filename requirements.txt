@@ -19,3 +19,4 @@ nltk
 pydantic
 crewai[google-genai]
 pytest
+langchain-openai

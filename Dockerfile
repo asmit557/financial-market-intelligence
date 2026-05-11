@@ -30,12 +30,13 @@ COPY . .
 # Build FAISS index during image build
 RUN python ingest.py
 
-# Expose FastAPI port
+# Expose both ports
 EXPOSE 8000
+EXPOSE 8501
 
 # Health check for deployment validation
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD python -c "import requests; requests.get('http://localhost:8000/')" || exit 1
 
-# Start FastAPI server
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Start both services using bash -c
+CMD bash -c "uvicorn main:app --host 0.0.0.0 --port 8000 & sleep 5 && streamlit run streamlit_app.py --server.port 8501 --server.address 0.0.0.0"
